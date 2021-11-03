@@ -19,11 +19,20 @@ route("/")
 })
 
 router
-.route("/name/:name")
+.route("/name/:query")
 .get(async (req, res) => {
     const product = await Products.findOne({
         include: Reviews,
-        where: {name: req.params.name}})
+        where: {name: req.params.query}})
+    res.send(product)
+})
+
+router
+.route("/price/:query")
+.get(async (req, res) => {
+    const product = await Products.findOne({
+        include: Reviews,
+        where: {price: req.params.query}})
     res.send(product)
 })
 
