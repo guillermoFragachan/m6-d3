@@ -19,5 +19,20 @@ route("/")
 })
 
 
+router.
+route("/:id")
+.get(async (req, res) => {
+    const product = await Products.findByPk(req.params.id, {include:Reviews})
+    res.send(product)
+})
+.put(async (req, res) => {
+    const product = await Products.update(req.body, {where: {id: req.params.id}})
+    res.send(product)
+})
+.delete(async (req, res) => {
+    const product = await Products.destroy({where: {id: req.params.id}})
+    res.send(product)
+})
+
 
 export default router
