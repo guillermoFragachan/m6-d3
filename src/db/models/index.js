@@ -8,4 +8,4 @@ Products.hasMany(Reviews, {onDelete: 'CASCADE'})
 
 
 
-export default { Products}
+export default { Products, Reviews}
