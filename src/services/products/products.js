@@ -1,6 +1,6 @@
 import express from 'express'
 import models from "../../db/models/index.js"
-const { Products, Reviews } = models
+const { Products, Reviews, Categories, Users } = models
 
 
 
@@ -10,7 +10,7 @@ const router = express.Router()
 router.
 route("/")
 .get(async (req, res) => {
-    const products = await Products.findAll({include:Reviews})
+    const products = await Products.findAll({include:[{ model: Categories, through: { attributes: [] } }]})
     res.send(products)
 })
 .post(async (req, res) => {
