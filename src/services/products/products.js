@@ -1,6 +1,6 @@
 import express from 'express'
 import models from "../../db/models/index.js"
-const { Products, Reviews, Categories, Users } = models
+const { Products, Reviews, Categories, Users, ProductCategory } = models
 
 
 
@@ -14,7 +14,17 @@ route("/")
     res.send(products)
 })
 .post(async (req, res) => {
-    const product = await Products.create(req.body)
+    const { categories, ...rest } = req.body;
+
+    const product = await Products.create(rest)
+    
+
+
+
+      await ProductCategory.create({
+        categoryId: req.body.categoryId,
+        ProductId: product.id,
+      });
     res.send(product)
 })
 

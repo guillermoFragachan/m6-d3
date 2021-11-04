@@ -17,4 +17,4 @@ Products.belongsToMany(Categories, {
     through: { model: ProductCategory, unique: false },
   });
 
-export default { Products, Reviews, Categories, Users }
+export default { Products, Reviews, Categories, Users, ProductCategory }
