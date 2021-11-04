@@ -3,6 +3,7 @@ import Reviews from "./Reviews.js"
 import Users from "./Users.js"
 import Categories from './Categories.js'
 import ProductCategory from './ProductCategory.js'
+import UserReviews from './UserReviews.js'
 
 
 
@@ -17,4 +18,12 @@ Products.belongsToMany(Categories, {
     through: { model: ProductCategory, unique: false },
   });
 
+
+  Users.belongsToMany(Reviews, {
+    through: { model: UserReviews, unique: false },
+  })
+
+  Reviews.belongsToMany(Users, {
+    through: { model: UserReviews, unique: false },
+  })
 export default { Products, Reviews, Categories, Users, ProductCategory }
