@@ -36,7 +36,7 @@ router
   .route("/:id")
   .get(async (req, res, next) => {
     try {
-      const User = await User.findByPk(req.params.id);
+      const User = await Users.findByPk(req.params.id);
       res.send(User);
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ router
     try {
       delete req.body.email;
       delete req.body.id;
-      const newUser = await User.update(
+      const newUser = await Users.update(
         { ...req.body },
         {
           where: {
@@ -64,7 +64,7 @@ router
   })
   .delete(async (req, res, next) => {
     try {
-      const rows = await User.destroy({
+      const rows = await Users.destroy({
         where: {
           id: req.params.id,
         },
